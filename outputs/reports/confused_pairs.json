@@ -1,0 +1,142 @@
+[
+  {
+    "true_index": 50,
+    "true_name": "Petunia",
+    "pred_index": 85,
+    "pred_name": "Tree Mallow",
+    "count": 3
+  },
+  {
+    "true_index": 89,
+    "true_name": "Canna Lily",
+    "pred_index": 42,
+    "pred_name": "Sword Lily (Gladiolus)",
+    "count": 3
+  },
+  {
+    "true_index": 3,
+    "true_name": "Sweet Pea",
+    "pred_index": 90,
+    "pred_name": "Hippeastrum (Amaryllis)",
+    "count": 2
+  },
+  {
+    "true_index": 12,
+    "true_name": "King Protea",
+    "pred_index": 28,
+    "pred_name": "Artichoke",
+    "count": 2
+  },
+  {
+    "true_index": 32,
+    "true_name": "Love in the Mist",
+    "pred_index": 56,
+    "pred_name": "Gaura",
+    "count": 2
+  },
+  {
+    "true_index": 50,
+    "true_name": "Petunia",
+    "pred_index": 54,
+    "pred_name": "Pelargonium",
+    "count": 2
+  },
+  {
+    "true_index": 50,
+    "true_name": "Petunia",
+    "pred_index": 81,
+    "pred_name": "Clematis",
+    "count": 2
+  },
+  {
+    "true_index": 58,
+    "true_name": "Orange Dahlia",
+    "pred_index": 55,
+    "pred_name": "Bishop of Llandaff",
+    "count": 2
+  },
+  {
+    "true_index": 70,
+    "true_name": "Gazania",
+    "pred_index": 16,
+    "pred_name": "Purple Coneflower",
+    "count": 2
+  },
+  {
+    "true_index": 73,
+    "true_name": "Rose",
+    "pred_index": 87,
+    "pred_name": "Cyclamen",
+    "count": 2
+  },
+  {
+    "true_index": 75,
+    "true_name": "Morning Glory",
+    "pred_index": 90,
+    "pred_name": "Hippeastrum (Amaryllis)",
+    "count": 2
+  },
+  {
+    "true_index": 77,
+    "true_name": "Lotus",
+    "pred_index": 87,
+    "pred_name": "Cyclamen",
+    "count": 2
+  },
+  {
+    "true_index": 82,
+    "true_name": "Hibiscus",
+    "pred_index": 90,
+    "pred_name": "Hippeastrum (Amaryllis)",
+    "count": 2
+  },
+  {
+    "true_index": 83,
+    "true_name": "Columbine",
+    "pred_index": 39,
+    "pred_name": "Lenten Rose",
+    "count": 2
+  },
+  {
+    "true_index": 83,
+    "true_name": "Columbine",
+    "pred_index": 56,
+    "pred_name": "Gaura",
+    "count": 2
+  },
+  {
+    "true_index": 95,
+    "true_name": "Camellia",
+    "pred_index": 96,
+    "pred_name": "Mallow",
+    "count": 2
+  },
+  {
+    "true_index": 0,
+    "true_name": "Pink Primrose",
+    "pred_index": 54,
+    "pred_name": "Pelargonium",
+    "count": 1
+  },
+  {
+    "true_index": 3,
+    "true_name": "Sweet Pea",
+    "pred_index": 42,
+    "pred_name": "Sword Lily (Gladiolus)",
+    "count": 1
+  },
+  {
+    "true_index": 3,
+    "true_name": "Sweet Pea",
+    "pred_index": 84,
+    "pred_name": "Desert Rose",
+    "count": 1
+  },
+  {
+    "true_index": 3,
+    "true_name": "Sweet Pea",
+    "pred_index": 87,
+    "pred_name": "Cyclamen",
+    "count": 1
+  }
+]

@@ -30,190 +30,421 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Custom Styling: Clean, Premium, Professional Botanical Aesthetic ---
-CUSTOM_CSS = """
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+# --- Dynamic Theme Styling Engine (High Contrast Light Mode & Dark Mode) ---
+def get_custom_css(theme_mode: str) -> str:
+    if theme_mode == "Dark Mode":
+        return """
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
 
-:root {
-    --primary: #C25975;
-    --primary-light: #FDF2F4;
-    --secondary: #7B68EE;
-    --secondary-light: #F4F2FF;
-    --surface: #FFFFFF;
-    --bg-base: #FAF9F6;
-    --border-color: #EAE3EA;
-    --text-primary: #241E26;
-    --text-secondary: #655869;
-}
+        :root {
+            --primary: #FF7597;
+            --primary-light: #2D1823;
+            --secondary: #A78BFA;
+            --secondary-light: #211B33;
+            --surface: #1B1624;
+            --surface-hover: #241D30;
+            --bg-base: #100E16;
+            --border-color: #382D47;
+            --text-primary: #F8F3F9;
+            --text-secondary: #C7BACF;
+        }
 
-html, body, [class*="css"] {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--text-primary);
-}
+        header[data-testid="stHeader"] {
+            background: #100E16 !important;
+            border-bottom: 1px solid #2B2136 !important;
+        }
 
-.stApp {
-    background: linear-gradient(180deg, #FAF8F5 0%, #FDFBF9 100%);
-}
+        .stApp {
+            background: #100E16 !important;
+            color: #F8F3F9 !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
 
-/* Header Banner */
-.hero-header {
-    background: linear-gradient(135deg, #F8EEF2 0%, #F1EDFA 100%);
-    padding: 2.8rem 2.2rem;
-    border-radius: 16px;
-    border: 1px solid #EEDCE5;
-    box-shadow: 0 4px 20px rgba(194, 89, 117, 0.05);
-    margin-bottom: 2rem;
-    text-align: center;
-}
+        .stApp * {
+            color: #F8F3F9;
+        }
 
-.hero-tag {
-    display: inline-block;
-    padding: 0.3rem 1rem;
-    background: #FFFFFF;
-    border: 1px solid #E5CBD7;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--primary);
-    margin-bottom: 0.8rem;
-}
+        h1, h2, h3, h4, h5, h6 {
+            color: #FFFFFF !important;
+            font-family: 'Playfair Display', serif;
+        }
 
-.hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #382534;
-    margin: 0.2rem 0 0.6rem 0;
-    letter-spacing: -0.5px;
-}
+        p, span, label, div, td, th {
+            color: #F0E8F2 !important;
+        }
 
-.hero-subtitle {
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-    max-width: 680px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
+        .hero-header {
+            background: linear-gradient(135deg, #241624 0%, #1A162B 100%) !important;
+            padding: 2.8rem 2.2rem;
+            border-radius: 16px;
+            border: 1px solid #432E47 !important;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4) !important;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
 
-/* Card components */
-.clean-card {
-    background: var(--surface);
-    border-radius: 14px;
-    padding: 1.5rem;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 12px rgba(40, 20, 35, 0.03);
-    margin-bottom: 1.25rem;
-}
+        .hero-tag {
+            display: inline-block;
+            padding: 0.35rem 1.1rem;
+            background: #2D1A27 !important;
+            border: 1.5px solid #FF7597 !important;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #FFB3C6 !important;
+            margin-bottom: 0.8rem;
+        }
 
-.metric-card {
-    background: #FFFFFF;
-    border-radius: 12px;
-    padding: 1.25rem 1rem;
-    border: 1px solid #EFE6EC;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-}
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #FFB3C6 !important;
+            margin: 0.2rem 0 0.6rem 0;
+            letter-spacing: -0.5px;
+        }
 
-.metric-value {
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 0.2rem;
-    font-feature-settings: "tnum";
-}
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: #D6C9DE !important;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
 
-.metric-label {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .clean-card {
+            background: #1B1624 !important;
+            border-radius: 14px;
+            padding: 1.5rem;
+            border: 1.5px solid #382D47 !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+            margin-bottom: 1.25rem;
+        }
 
-/* Care Category Box */
-.care-panel {
-    border-radius: 10px;
-    padding: 1.2rem;
-    margin-bottom: 1rem;
-    border-left: 3px solid;
-    background: #FAFAFC;
-}
+        .metric-card {
+            background: #1B1624 !important;
+            border-radius: 12px;
+            padding: 1.25rem 1rem;
+            border: 1.5px solid #382D47 !important;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        }
 
-.care-panel-water { border-color: #3B82F6; background: #F8FAFC; }
-.care-panel-sun { border-color: #F59E0B; background: #FFFDF9; }
-.care-panel-soil { border-color: #10B981; background: #F8FDFB; }
-.care-panel-tips { border-color: #EC4899; background: #FDF9FB; }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #FF7597 !important;
+            margin-bottom: 0.2rem;
+        }
 
-.panel-header {
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-bottom: 0.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        .metric-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #C7BACF !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-.badge-pill {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    background: var(--primary-light);
-    color: var(--primary);
-    border: 1px solid #F5CCD7;
-    margin-right: 0.35rem;
-}
+        .care-panel {
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+            background: #1F1A2B !important;
+        }
+        .care-panel-water { border-color: #60A5FA !important; background: #131E2E !important; }
+        .care-panel-sun { border-color: #FBBF24 !important; background: #261F13 !important; }
+        .care-panel-soil { border-color: #34D399 !important; background: #13241D !important; }
+        .care-panel-tips { border-color: #F472B6 !important; background: #281522 !important; }
 
-/* Buttons */
-div.stButton > button:first-child {
-    background: linear-gradient(135deg, #C25975 0%, #7B68EE 100%);
-    color: #FFFFFF;
-    border: none;
-    border-radius: 8px;
-    padding: 0.6rem 1.8rem;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.2s ease;
-}
+        .panel-header {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #FFFFFF !important;
+        }
 
-div.stButton > button:first-child:hover {
-    box-shadow: 0 4px 15px rgba(194, 89, 117, 0.25);
-    color: #FFFFFF;
-}
+        .badge-pill {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            background: #2D1823 !important;
+            color: #FF8BA7 !important;
+            border: 1px solid #5A273D !important;
+            margin-right: 0.35rem;
+        }
 
-[data-testid="stSidebar"] {
-    background: #FAF8F6;
-    border-right: 1px solid #ECE4EB;
-}
+        [data-testid="stSidebar"] {
+            background: #15121D !important;
+            border-right: 1px solid #2B2136 !important;
+        }
 
-.stProgress > div > div > div > div {
-    background: linear-gradient(90deg, #C25975, #7B68EE);
-    border-radius: 6px;
-}
-</style>
-"""
-st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
+        [data-testid="stSidebar"] * {
+            color: #F0E8F2 !important;
+        }
 
-# --- Singleton Predictor Initialization ---
-@st.cache_resource(show_spinner=False)
-def get_classifier():
-    return FlowerClassifier()
+        [data-testid="stSidebar"] [data-testid="stRadio"] label {
+            color: #F0E8F2 !important;
+            font-weight: 600 !important;
+            font-size: 0.92rem !important;
+        }
 
-classifier = get_classifier()
+        [data-testid="stSidebar"] [data-testid="stRadio"] div[role="radiogroup"] label div p {
+            color: #E2D7E6 !important;
+            font-size: 0.95rem !important;
+            font-weight: 500 !important;
+        }
 
-# --- Navigation Sidebar ---
+        [data-testid="stSidebar"] [data-testid="stRadio"] div[role="radiogroup"] label[data-checked="true"] div p {
+            color: #FF8BA7 !important;
+            font-weight: 700 !important;
+        }
+
+        div.stButton > button:first-child {
+            background: linear-gradient(135deg, #FF7597 0%, #A78BFA 100%) !important;
+            color: #110E16 !important;
+            font-weight: 700 !important;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.8rem;
+            transition: all 0.2s ease;
+        }
+
+        div.stButton > button:first-child:hover {
+            box-shadow: 0 4px 15px rgba(255, 117, 151, 0.4) !important;
+        }
+
+        .stProgress > div > div > div > div {
+            background: linear-gradient(90deg, #FF7597, #A78BFA) !important;
+            border-radius: 6px;
+        }
+        </style>
+        """
+    else:
+        return """
+        <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+
+        :root {
+            --primary: #9C1D43;
+            --primary-light: #FDEEF2;
+            --secondary: #5E48C9;
+            --secondary-light: #F2EFFF;
+            --surface: #FFFFFF;
+            --bg-base: #FAF8F5;
+            --border-color: #DCCFDC;
+            --text-primary: #1C121E;
+            --text-secondary: #3D2D3F;
+        }
+
+        header[data-testid="stHeader"] {
+            background: #FAF8F5 !important;
+            border-bottom: 1px solid #EBE0EB !important;
+        }
+
+        .stApp {
+            background: #FAF8F5 !important;
+            color: #1C121E !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .stApp * {
+            color: #1C121E;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #241121 !important;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        p, span, label, div, td, th {
+            color: #261A28 !important;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, #FDECF0 0%, #F3EDFC 100%) !important;
+            padding: 2.8rem 2.2rem;
+            border-radius: 16px;
+            border: 1.5px solid #E6CFD9 !important;
+            box-shadow: 0 4px 20px rgba(156, 29, 67, 0.08) !important;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.35rem 1.1rem;
+            background: #FFFFFF !important;
+            border: 1.5px solid #9C1D43 !important;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #9C1D43 !important;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #701A38 !important;
+            margin: 0.2rem 0 0.6rem 0;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: #332335 !important;
+            font-weight: 500;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .clean-card {
+            background: #FFFFFF !important;
+            border-radius: 14px;
+            padding: 1.5rem;
+            border: 1.5px solid #DCCFDC !important;
+            box-shadow: 0 4px 14px rgba(45, 20, 35, 0.05) !important;
+            margin-bottom: 1.25rem;
+        }
+
+        .metric-card {
+            background: #FFFFFF !important;
+            border-radius: 12px;
+            padding: 1.25rem 1rem;
+            border: 1.5px solid #DCCFDC !important;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #9C1D43 !important;
+            margin-bottom: 0.2rem;
+        }
+
+        .metric-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #3D2D3F !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .care-panel {
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+            background: #FAF9FC !important;
+        }
+        .care-panel-water { border-color: #2563EB !important; background: #F4F8FD !important; }
+        .care-panel-sun { border-color: #D97706 !important; background: #FFFBF2 !important; }
+        .care-panel-soil { border-color: #059669 !important; background: #F2FBF7 !important; }
+        .care-panel-tips { border-color: #DB2777 !important; background: #FDF4F8 !important; }
+
+        .panel-header {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #241121 !important;
+        }
+
+        .badge-pill {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            background: #FDEEF2 !important;
+            color: #9C1D43 !important;
+            border: 1.5px solid #F0C4D1 !important;
+            margin-right: 0.35rem;
+        }
+
+        [data-testid="stSidebar"] {
+            background: #F4EEF3 !important;
+            border-right: 1.5px solid #DCCFDC !important;
+        }
+
+        [data-testid="stSidebar"] * {
+            color: #1C121E !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stRadio"] label {
+            color: #1C121E !important;
+            font-weight: 600 !important;
+            font-size: 0.92rem !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stRadio"] div[role="radiogroup"] label div p {
+            color: #1C121E !important;
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+        }
+
+        [data-testid="stSidebar"] [data-testid="stRadio"] div[role="radiogroup"] label[data-checked="true"] div p {
+            color: #9C1D43 !important;
+            font-weight: 800 !important;
+        }
+
+        div.stButton > button:first-child {
+            background: linear-gradient(135deg, #9C1D43 0%, #5E48C9 100%) !important;
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.8rem;
+            transition: all 0.2s ease;
+        }
+
+        div.stButton > button:first-child:hover {
+            box-shadow: 0 4px 15px rgba(156, 29, 67, 0.35) !important;
+        }
+
+        .stProgress > div > div > div > div {
+            background: linear-gradient(90deg, #9C1D43, #5E48C9) !important;
+            border-radius: 6px;
+        }
+        </style>
+        """
+
+# --- Navigation Sidebar & Theme Control ---
+if "theme_mode" not in st.session_state:
+    st.session_state["theme_mode"] = "Light Mode"
+
 with st.sidebar:
     st.markdown("""
-        <div style="padding: 1rem 0 0.5rem 0;">
-            <h2 style="font-family: 'Playfair Display', serif; color: #382534; margin: 0; font-weight: 700; font-size: 1.6rem;">PetalPop AI</h2>
-            <p style="font-size: 0.8rem; color: #7B68EE; font-weight: 600; margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.5px;">Intelligent Flower Recognition</p>
+        <div style="padding: 0.8rem 0 0.4rem 0;">
+            <h2 style="font-family: 'Playfair Display', serif; margin: 0; font-weight: 700; font-size: 1.6rem;">PetalPop AI</h2>
+            <p style="font-size: 0.78rem; font-weight: 700; margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 0.5px;">Intelligent Flower Recognition</p>
         </div>
     """, unsafe_allow_html=True)
-    
-    st.markdown("<hr style='border: none; height: 1px; background: #ECE4EB; margin: 0.8rem 0 1.2rem 0;'>", unsafe_allow_html=True)
+
+    theme_choice = st.radio(
+        "Display Mode",
+        ["Light Mode", "Dark Mode"],
+        index=0 if st.session_state["theme_mode"] == "Light Mode" else 1,
+        horizontal=True
+    )
+    st.session_state["theme_mode"] = theme_choice
+
+    st.markdown("<hr style='border: none; height: 1px; background: #DCCFDC; margin: 0.8rem 0 1.2rem 0;'>", unsafe_allow_html=True)
 
     selected_page = st.radio(
         "Navigation",
@@ -229,18 +460,28 @@ with st.sidebar:
         index=0
     )
 
-    st.markdown("<hr style='border: none; height: 1px; background: #ECE4EB; margin: 1.5rem 0 1rem 0;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border: none; height: 1px; background: #DCCFDC; margin: 1.5rem 0 1rem 0;'>", unsafe_allow_html=True)
     
     st.markdown("""
-        <div style="padding: 0.9rem; background: #FFFFFF; border-radius: 8px; border: 1px solid #EFE6EC;">
-            <div style="font-size: 0.75rem; font-weight: 700; color: #C25975; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.4rem;">Deployment Specs</div>
-            <div style="font-size: 0.82rem; color: #4A3A47; line-height: 1.5;">
+        <div style="padding: 0.9rem; border-radius: 8px; border: 1.5px solid #DCCFDC;">
+            <div style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.4rem;">Deployment Specs</div>
+            <div style="font-size: 0.82rem; line-height: 1.5;">
                 <b>Architecture:</b> MobileNetV2<br>
                 <b>Categories:</b> 102 Botanical Classes<br>
                 <b>Benchmark:</b> Oxford 102 Flowers
             </div>
         </div>
     """, unsafe_allow_html=True)
+
+# Apply Dynamic CSS based on user-chosen mode
+st.markdown(get_custom_css(st.session_state["theme_mode"]), unsafe_allow_html=True)
+
+# --- Singleton Predictor Initialization ---
+@st.cache_resource(show_spinner=False)
+def get_classifier():
+    return FlowerClassifier()
+
+classifier = get_classifier()
 
 # ==============================================================================
 # 1. HOME DASHBOARD
@@ -753,27 +994,71 @@ elif selected_page == "Model Performance":
 
     st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
 
-    # Graphs
-    g_col1, g_col2 = st.columns(2)
-    with g_col1:
-        st.markdown("""<div class="clean-card">""", unsafe_allow_html=True)
-        st.markdown("<h4 style='color: #382534; margin-bottom: 0.8rem;'>Training vs Validation Curves</h4>", unsafe_allow_html=True)
-        history_img = os.path.join(PROJECT_ROOT, "outputs", "graphs", "training_history.png")
-        if os.path.exists(history_img):
-            st.image(history_img, use_container_width=True)
-        else:
-            st.info("Training history graph available upon running training pipeline.")
-        st.markdown("</div>", unsafe_allow_html=True)
+    # Graphs & Visualizations
+    st.markdown("""<div class="clean-card">""", unsafe_allow_html=True)
+    st.markdown("<h3 style='margin-bottom: 0.8rem;'>Training vs Validation Curves</h3>", unsafe_allow_html=True)
+    history_img = os.path.join(PROJECT_ROOT, "outputs", "graphs", "training_history.png")
+    if os.path.exists(history_img):
+        st.image(history_img, use_container_width=True)
+    else:
+        st.info("Training history graph available upon running training pipeline.")
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    with g_col2:
-        st.markdown("""<div class="clean-card">""", unsafe_allow_html=True)
-        st.markdown("<h4 style='color: #382534; margin-bottom: 0.8rem;'>Confusion Matrix Heatmap</h4>", unsafe_allow_html=True)
-        cm_img = os.path.join(PROJECT_ROOT, "outputs", "confusion_matrix.png")
-        if os.path.exists(cm_img):
-            st.image(cm_img, use_container_width=True)
+    # Confusion Matrix Section with High-Resolution Views
+    st.markdown("""<div class="clean-card">""", unsafe_allow_html=True)
+    st.markdown("<h3 style='margin-bottom: 0.4rem;'>Confusion Matrix & Botanical Categorization Analysis</h3>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size: 0.9rem; margin-bottom: 1.2rem;'>Explore the overall 102-class matrix, zoomed 15-species matrix with annotated counts, and scientific misclassification analysis.</p>", unsafe_allow_html=True)
+
+    cm_tab1, cm_tab2, cm_tab3, cm_tab4 = st.tabs([
+        "Dual-Panel Master Matrix",
+        "Zoomed 15-Species Matrix (Annotated Counts)",
+        "Full 102-Class Overview (Grid Ticks)",
+        "Botanical Misclassification Analysis"
+    ])
+
+    with cm_tab1:
+        st.markdown("<div style='font-size: 0.9rem; margin-bottom: 0.6rem;'><b>Combined Master Figure:</b> Left panel illustrates diagonal dominance across all 102 classes; right panel provides cell-level counts for representative botanical species.</div>", unsafe_allow_html=True)
+        cm_dual = os.path.join(PROJECT_ROOT, "outputs", "confusion_matrix.png")
+        if os.path.exists(cm_dual):
+            st.image(cm_dual, use_container_width=True)
         else:
-            st.info("Confusion matrix available upon test evaluation.")
-        st.markdown("</div>", unsafe_allow_html=True)
+            st.info("Dual-panel matrix available in outputs/confusion_matrix.png.")
+
+    with cm_tab2:
+        st.markdown("<div style='font-size: 0.9rem; margin-bottom: 0.6rem;'><b>15 Representative Botanical Species:</b> Complete common names on both axes with exact sample counts printed inside every single cell for presentation and grading.</div>", unsafe_allow_html=True)
+        cm_sub = os.path.join(PROJECT_ROOT, "outputs", "graphs", "confusion_matrix_top15_species.png")
+        if os.path.exists(cm_sub):
+            st.image(cm_sub, use_container_width=True)
+        else:
+            st.info("Annotated species sub-matrix available in outputs/graphs/confusion_matrix_top15_species.png.")
+
+    with cm_tab3:
+        st.markdown("<div style='font-size: 0.9rem; margin-bottom: 0.6rem;'><b>Full 102-Class Global Grid:</b> Power-scaled color intensity with explicit grid tick marks every 10 classes (Class 0, Class 10, Class 20... Class 100).</div>", unsafe_allow_html=True)
+        cm_full = os.path.join(PROJECT_ROOT, "outputs", "graphs", "confusion_matrix_102_classes.png")
+        if os.path.exists(cm_full):
+            st.image(cm_full, use_container_width=True)
+        else:
+            st.info("Full 102-class grid available in outputs/graphs/confusion_matrix_102_classes.png.")
+
+    with cm_tab4:
+        st.markdown("<div style='font-size: 0.9rem; margin-bottom: 0.8rem;'><b>Top Confused Botanical Species Pairs:</b> Empirical misclassifications occur primarily between species sharing morphological petal structures and taxonomic flower families.</div>", unsafe_allow_html=True)
+        pairs_path = os.path.join(PROJECT_ROOT, "outputs", "reports", "confused_pairs.json")
+        if os.path.exists(pairs_path):
+            with open(pairs_path, "r", encoding="utf-8") as f:
+                pairs_data = json.load(f)
+            df_pairs = pd.DataFrame(pairs_data)
+            df_pairs = df_pairs.rename(columns={
+                "true_name": "True Botanical Species",
+                "pred_name": "Predicted Species",
+                "count": "Misclassified Count",
+                "true_index": "True Index",
+                "pred_index": "Predicted Index"
+            })
+            st.dataframe(df_pairs[["True Botanical Species", "Predicted Species", "Misclassified Count"]], use_container_width=True)
+        else:
+            st.info("Confused pairs report available in outputs/reports/confused_pairs.json.")
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
     # Classification Report
     st.markdown("<h4 style='color: #382534; margin-top: 1.5rem;'>Classification Report Excerpt</h4>", unsafe_allow_html=True)
