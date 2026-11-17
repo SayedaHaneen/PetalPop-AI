@@ -1,132 +1,136 @@
-# PetalPop AI 🌸: Intelligent Flower Recognition and Care Assistant
+# PetalPop AI: Intelligent Flower Recognition and Care Assistant
 
-[![Python](https://img.shields.io/badge/Python-3.11+-4B8BBE?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15+-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
-[![Keras](https://img.shields.io/badge/Keras-3.0+-D00000?style=for-the-badge&logo=keras&logoColor=white)](https://keras.io/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![Dataset](https://img.shields.io/badge/Dataset-Oxford%20102%20Flowers-green?style=for-the-badge)](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/)
+[![Python](https://img.shields.io/badge/Python-3.11+-4B8BBE?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.21+-FF6F00?style=flat-square&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
+[![Keras](https://img.shields.io/badge/Keras-3.15+-D00000?style=flat-square&logo=keras&logoColor=white)](https://keras.io/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.40+-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Dataset](https://img.shields.io/badge/Dataset-Oxford%20102%20Flowers-green?style=flat-square)](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/)
 
-> **A University-Level Deep Learning & Explainable Computer Vision Project**  
-> *Identifies 102 flower species with MobileNetV2 Transfer Learning, visualizes decision attention using Grad-CAM, provides tailored botanical care guidelines, and saves your personalized garden collection.*
+**A University-Level Deep Learning and Explainable Computer Vision System**  
+*Fine-grained categorization of 102 flower species via MobileNetV2 Transfer Learning, Grad-CAM interpretability, and evidence-based botanical care recommendations.*
 
 ---
 
-## 🌺 1. Project Overview
+## 1. Project Overview
 
-**PetalPop AI** is an end-to-end intelligent botanical recognition system and plant care companion. Fine-grained visual categorization of flowers is notoriously difficult due to extreme intra-class variability (differences in color stages, petal count, perspective, lighting) and subtle inter-class differences between related botanical species.
+PetalPop AI is an end-to-end deep learning system designed for automated botanical recognition and plant care guidance. Fine-grained visual categorization (FGVC) of flora presents significant technical challenges due to high intra-class variance across blooming stages and subtle inter-class differences between related botanical taxa.
 
-PetalPop AI solves this through **Transfer Learning & Fine-Tuning with MobileNetV2**, achieving high classification accuracy while maintaining lightweight, real-time efficiency. To address the black-box nature of deep neural networks, PetalPop AI incorporates **Gradient-weighted Class Activation Mapping (Grad-CAM)** to visually highlight the anatomical regions (petals, stamen, corolla) influencing each prediction.
+PetalPop AI addresses this challenge using **Transfer Learning and Fine-Tuning with MobileNetV2**, achieving high classification accuracy while maintaining lightweight, edge-compatible computational efficiency. To ensure transparency, the system implements **Gradient-weighted Class Activation Mapping (Grad-CAM)** to visually localize the anatomical regions (corolla, petals, stamens) that drive model predictions.
 
 ### Key Capabilities:
-1. 📸 **Instant Image Identification:** Drag & drop any flower photograph (JPG, JPEG, PNG).
-2. 🎯 **Confidence Scoring & Top-3 Candidates:** Real-time softmax probability distributions.
-3. ⚠️ **Uncertainty Alert:** Warns users if image quality or ambiguity causes low model confidence.
-4. 🧠 **Explainable AI (Grad-CAM):** Visualizes the exact convolutional feature maps guiding the AI.
-5. 💧 **Botanical Care Assistant:** Authoritative watering, sunlight, soil, and care instructions for all 102 classes.
-6. 🌺 **Personal Garden Collection:** Locally saves identified specimens with personal field notes.
-7. 📊 **Academic Evaluation Dashboard:** Displays real training curves, confusion matrix, and precision/recall/F1 metrics.
+- **Image Identification:** Classification of flower photographs across 102 categories (JPG, JPEG, PNG).
+- **Softmax Probability Scoring:** Displays top prediction confidence and ranked top-3 candidate species.
+- **Uncertainty Alert:** Warns users when image ambiguity or low resolution yields sub-threshold confidence.
+- **Explainable AI (Grad-CAM):** Computes class activation heatmaps overlaid directly on the input image.
+- **Botanical Care Assistant:** Authoritative watering, sunlight, soil, and cultivation directives for all 102 classes.
+- **Local Specimen Collection:** Persistent local collection tracking with custom user field notes.
+- **Model Evaluation Dashboard:** Real-time presentation of empirical training curves, confusion matrix, and multi-class precision, recall, and F1 metrics.
 
 ---
 
-## 🏗️ 2. System Architecture
+## 2. System Architecture
 
 ```
 PetalPop_AI/
 │
-├── app.py                         # Interactive Streamlit Web Interface
-├── requirements.txt               # Pinned Python package dependencies
-├── README.md                      # Comprehensive academic & setup documentation
-├── UNIVERSITY_PROJECT_REPORT.md   # Full university research project report
+├── app.py                         # Streamlit web application
+├── requirements.txt               # Pinned package dependencies
+├── README.md                      # Academic documentation & setup manual
+├── UNIVERSITY_PROJECT_REPORT.md   # Comprehensive university research report
+├── download_and_prep.py           # Automated dataset acquisition & splitting
+├── push_to_github.py              # Zero-git direct GitHub synchronizer
 │
 ├── models/
-│   └── best_model.keras           # Trained MobileNetV2 model weights
-│
-├── data/
-│   ├── raw/                       # Original Oxford 102 tgz archive & labels
-│   ├── processed/                 # Stratified train/, val/, test/ folders
-│   └── collection.json            # Persistent user garden collection
+│   └── best_model.keras           # Trained MobileNetV2 weights (27.7 MB, 88.04% Test Acc)
 │
 ├── src/
-│   ├── __init__.py
-│   ├── data_preprocessing.py      # Download, extraction, augmentation pipelines
-│   ├── model.py                   # MobileNetV2 architecture & head design
-│   ├── train.py                   # 2-Phase training & fine-tuning engine
-│   ├── predict.py                 # Inference engine, top-k, uncertainty handler
-│   ├── gradcam.py                 # Grad-CAM heatmap & overlay generator
-│   ├── evaluation.py              # Metrics, confusion matrix, classification report
-│   └── flower_info.py             # 102-species botanical care database
+│   ├── data_preprocessing.py      # Stratified splitting & data augmentation
+│   ├── model.py                   # MobileNetV2 Transfer Learning & Fine-Tuning architecture
+│   ├── train.py                   # 2-Phase training engine with callbacks
+│   ├── predict.py                 # Multi-class inference engine & uncertainty handler
+│   ├── gradcam.py                 # Explainable AI: Grad-CAM heatmap & overlay generator
+│   ├── evaluation.py              # Test set evaluation, metrics, and confusion matrix
+│   ├── flower_info.py             # 102 flower care & botanical profiles
+│   └── __init__.py
+│
+├── assets/
+│   └── sample_flowers/            # Built-in showcase flowers for 1-click demos
 │
 ├── outputs/
 │   ├── graphs/
-│   │   └── training_history.png   # Accuracy & loss curves over epochs
-│   ├── confusion_matrix.png       # High-resolution 102-class confusion matrix
+│   │   └── training_history.png   # Measured training & validation loss/accuracy curves
+│   ├── confusion_matrix.png       # 102-class high-resolution confusion matrix
 │   └── reports/
-│       ├── classification_report.txt # Per-class precision, recall, and F1
-│       └── metrics.json           # Serialized summary metrics
+│       ├── classification_report.txt # Full precision, recall, and F1 per class
+│       ├── metrics.json           # Serialized test metrics
+│       └── training_history.json  # Epoch-by-epoch loss & accuracy history
 │
 └── utils/
-    └── helpers.py                 # Validation, PIL helpers, collection JSON CRUD
+    ├── helpers.py                 # Image validation, PIL loaders, collection CRUD
+    └── __init__.py
 ```
 
 ---
 
-## 🔬 3. Deep Learning Methodology
+## 3. Deep Learning Methodology
 
 ### 3.1 MobileNetV2 Backbone
-MobileNetV2 uses **Inverted Residual Blocks with Linear Bottlenecks**:
-- **Depthwise Separable Convolutions:** Decomposes standard $3 \times 3$ convolutions into a spatial $3 \times 3$ depthwise filter and a $1 \times 1$ pointwise projection, reducing FLOPs by ~8-9× with minimal accuracy loss.
-- **Inverted Residuals:** Expands channel capacity by factor $t=6$ in intermediate layers before depthwise filtering, then projects back to low-dimensional linear bottlenecks.
-- **Linear Bottleneck:** Replaces nonlinear activation in the projection layer with a linear activation to prevent information loss on low-dimensional manifolds.
+MobileNetV2 optimizes parameter efficiency through **Inverted Residual Blocks with Linear Bottlenecks**:
+- **Depthwise Separable Convolutions:** Decomposes standard 3x3 convolutions into a spatial 3x3 depthwise filter and a 1x1 pointwise projection, reducing operations by approximately 8 to 9 times with minimal loss in representation.
+- **Inverted Residuals:** Expands channel dimensionality by a factor of 6 in intermediate layers before spatial filtering, subsequently projecting back to low-dimensional linear bottlenecks.
+- **Linear Bottleneck:** Omits nonlinear activations in the projection layer to prevent manifold destruction in low-dimensional spaces.
 
 ### 3.2 Two-Stage Training Pipeline
-1. **Stage 1 (Warmup / Feature Extraction):**
-   - Base MobileNetV2 weights (ImageNet pretrained) are frozen.
-   - Classification head: `GlobalAveragePooling2D` $\rightarrow$ `BatchNormalization` $\rightarrow$ `Dropout(0.35)` $\rightarrow$ `Dense(256, activation='relu')` $\rightarrow$ `Dropout(0.175)` $\rightarrow$ `Dense(102, activation='softmax')`.
-   - Trained with Adam optimizer ($\alpha = 10^{-3}$) and Sparse Categorical Cross-Entropy.
-2. **Stage 2 (Stratified Fine-Tuning):**
-   - Upper convolutional blocks (from layer 100 onwards) are unfrozen.
-   - Batch normalization layers remain frozen in inference mode for stability.
-   - Trained with a reduced learning rate ($\alpha = 5 \times 10^{-5}$) to adapt higher-level semantic features without catastrophic forgetting.
+1. **Stage 1: Feature Extraction Head Warmup**
+   - Base MobileNetV2 weights (ImageNet pretrained) remain frozen.
+   - Classification head: `GlobalAveragePooling2D` -> `BatchNormalization` -> `Dropout(0.35)` -> `Dense(256, ReLU)` -> `Dropout(0.175)` -> `Dense(102, Softmax)`.
+   - Trained with Adam optimizer (learning rate = 1e-3) using Sparse Categorical Cross-Entropy.
+2. **Stage 2: Stratified Fine-Tuning**
+   - Upper convolutional blocks (from layer 110 onwards) are unfrozen.
+   - Batch normalization layers remain in inference mode to preserve moving statistics.
+   - Trained with an attenuated learning rate (5e-5) to adapt specialized floral features while preventing catastrophic forgetting.
 
-### 3.3 Callbacks Employed
-- **`ModelCheckpoint`:** Saves the optimal model state based on validation accuracy (`best_model.keras`).
-- **`EarlyStopping`:** Prevents overfitting by monitoring validation loss with a patience threshold and restores best weights.
-- **`ReduceLROnPlateau`:** Dynamically scales down learning rate by factor 0.5 when validation loss plateaus.
+### 3.3 Callbacks Implemented
+- **ModelCheckpoint:** Saves optimal model parameters based on validation accuracy (`models/best_model.keras`).
+- **EarlyStopping:** Monitored validation loss to prevent overfitting and restored optimal weights.
+- **ReduceLROnPlateau:** Dynamically reduced the learning rate by a factor of 0.5 when validation loss plateaued.
 
 ---
 
-## 🧠 4. Explainable AI: Grad-CAM
+## 4. Explainable AI: Grad-CAM Formulation
 
-Gradient-weighted Class Activation Mapping computes the spatial gradients of the winning class score $y^c$ with respect to feature activation map $A^k$ of the final convolutional layer:
+Gradient-weighted Class Activation Mapping computes spatial importance gradients of the predicted class score $y^c$ with respect to feature activation maps $A^k$ of the final convolutional layer:
 
 $$\alpha_k^c = \frac{1}{Z} \sum_{i} \sum_{j} \frac{\partial y^c}{\partial A_{i,j}^k}$$
 
 $$L_{\text{Grad-CAM}}^c = \text{ReLU}\left( \sum_k \alpha_k^c A^k \right)$$
 
-Applying a positive ReLU filter ensures that the generated heatmap only highlights floral regions that increase the class score, filtering out non-flower background foliage.
+The positive ReLU gate isolates features that positively increase the class score, filtering out non-flower background foliage.
 
 ---
 
-## 📊 5. Experimental Results
+## 5. Measured Experimental Results
 
 Evaluated on the independent Oxford 102 held-out test split (1,229 unseen images):
 
-| Metric | Score |
-| :--- | :--- |
-| **Top-1 Test Accuracy** | **89.4%** |
-| **Top-3 Test Accuracy** | **96.8%** |
-| **Weighted Precision** | **90.3%** |
-| **Weighted Recall** | **89.4%** |
-| **Weighted F1-Score** | **0.896** |
-| **Macro F1-Score** | **0.881** |
+| Metric | Score | Evaluation Condition |
+| :--- | :--- | :--- |
+| **Top-1 Test Accuracy** | **88.04%** | Evaluated on 1,229 unseen test images |
+| **Top-3 Accuracy** | **96.82%** | Correct species within top 3 predictions |
+| **Weighted Precision** | **89.89%** | Multi-class weighted precision |
+| **Weighted Recall** | **88.04%** | Multi-class weighted recall |
+| **Weighted F1-Score** | **0.8807** | Harmonized F1 across 102 flower categories |
+| **Macro F1-Score** | **0.8763** | Unweighted average across all categories |
+| **Final Validation Loss**| **0.4022** | Cross-entropy loss |
+| **Model Size** | **27.7 MB** | Native Keras format (`models/best_model.keras`) |
 
 ---
 
-## 🚀 6. Installation and Execution
+## 6. Installation and Execution
 
 ### Prerequisites
 - Python 3.10 or 3.11
-- Windows, macOS, or Linux
+- Operating System: Windows, macOS, or Linux
 
 ### Step 1: Clone Repository
 ```bash
@@ -134,7 +138,7 @@ git clone https://github.com/SayedaHaneen/PetalPop-AI.git
 cd PetalPop-AI
 ```
 
-### Step 2: Create and Activate Virtual Environment
+### Step 2: Virtual Environment Setup
 ```bash
 # Windows
 python -m venv venv
@@ -145,47 +149,35 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### Step 3: Install Dependencies
+### Step 3: Install Requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Run Streamlit Web Application
+### Step 4: Run Application
 ```bash
 streamlit run app.py
 ```
-Open your browser at `http://localhost:8501`.
-
-### Step 5: (Optional) Run Dataset Preparation & Training
-```bash
-# Download and organize Oxford 102 dataset
-python download_and_prep.py
-
-# Train MobileNetV2 model
-python src/train.py --epochs_head 5 --epochs_finetune 8 --batch_size 32
-```
+Open `http://localhost:8501` in your browser.
 
 ---
 
-## 🌿 7. Flower Care Database Coverage
+## 7. Horticultural Care Database Coverage
 
-The database covers all 102 Oxford Flower species including:
-- *Pink Primrose, Lady's Slipper Orchid, Canterbury Bells, Sweet Pea, Tiger Lily, Moon Orchid, Bird of Paradise, Monkshood, King Protea, Purple Coneflower, Peruvian Lily, Anthurium, Hibiscus, Bougainvillea, Frangipani, Desert Rose, Camellia, Lotus, Water Lily*, and 83 more!
+The botanical database covers all 102 Oxford Flower species including:
+*Pink Primrose, Lady's Slipper Orchid, Canterbury Bells, Sweet Pea, Tiger Lily, Moon Orchid, Bird of Paradise, Monkshood, King Protea, Purple Coneflower, Peruvian Lily, Anthurium, Hibiscus, Bougainvillea, Frangipani, Desert Rose, Camellia, Lotus, Water Lily*, and 83 additional species.
 
-Each entry provides:
-- 💧 **Watering frequency & seasonal adjustments**
-- ☀️ **Sunlight exposure & photoperiod**
-- 🌱 **Soil composition, pH, and drainage**
-- ✂️ **Pruning, fertilization, and winterizing**
-
----
-
-## 📜 8. Academic Submission Details
-
-- **Project:** PetalPop AI: Intelligent Flower Recognition and Care Assistant
-- **Framework:** TensorFlow 2.15+ / Keras 3.0+
-- **Evaluation Benchmark:** Oxford 102 Flowers (Nilsback & Zisserman)
-- **Report Document:** [UNIVERSITY_PROJECT_REPORT.md](UNIVERSITY_PROJECT_REPORT.md)
+Each profile details:
+- **Watering:** Frequency, soil drying thresholds, and seasonal dormancy allowances.
+- **Sunlight:** Direct exposure versus filtered light and photoperiod requirements.
+- **Soil Composition:** Substrate texture, pH balance, and drainage parameters.
+- **Maintenance:** Pruning protocols, fertilizer schedules, and winterization.
 
 ---
-*Developed with love and deep learning 🌸*
+
+## 8. Academic Submission Information
+
+- **Project Title:** PetalPop AI: Intelligent Flower Recognition and Care Assistant
+- **Framework:** TensorFlow 2.21+ / Keras 3.15+
+- **Benchmark:** Oxford 102 Category Flower Dataset (Nilsback & Zisserman)
+- **Detailed Research Report:** [UNIVERSITY_PROJECT_REPORT.md](UNIVERSITY_PROJECT_REPORT.md)
