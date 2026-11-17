@@ -857,18 +857,15 @@ elif selected_page == "Explainable AI (Grad-CAM)":
         """, unsafe_allow_html=True)
 
     with st.expander("Theoretical Formulation of Grad-CAM", expanded=True):
-        st.markdown("""
-        **Mathematical Formulation:**
-        Let $A^k$ denote the $k$-th feature activation map of the final convolutional layer of MobileNetV2, and let $y^c$ denote the classification logit for class $c$.
-
-        1. **Neuron Importance Weights:**
-           $$\\alpha_k^c = \\frac{1}{Z} \\sum_{i} \\sum_{j} \\frac{\\partial y^c}{\\partial A_{i,j}^k}$$
-
-        2. **Class Saliency Map:**
-           $$L_{\\text{Grad-CAM}}^c = \\text{ReLU}\\left( \\sum_{k} \\alpha_k^c A^k \\right)$$
-
-        The Rectified Linear Unit (ReLU) ensures that only features having a positive contribution toward the target class score are highlighted, while suppressing non-discriminative background structures.
-        """)
+        st.markdown(
+            "**Mathematical Formulation:**\n\n"
+            "Let $A^k$ denote the $k$-th feature activation map of the final convolutional layer of MobileNetV2, and let $y^c$ denote the classification logit for class $c$.\n\n"
+            "**1. Neuron Importance Weights:**\n"
+            r"$$\alpha_k^c = \frac{1}{Z} \sum_{i} \sum_{j} \frac{\partial y^c}{\partial A_{i,j}^k}$$" "\n\n"
+            "**2. Class Saliency Map:**\n"
+            r"$$L_{\text{Grad-CAM}}^c = \text{ReLU}\left( \sum_{k} \alpha_k^c A^k \right)$$" "\n\n"
+            "The Rectified Linear Unit (ReLU) ensures that only features having a positive contribution toward the target class score are highlighted, while suppressing non-discriminative background structures."
+        )
 
 # ==============================================================================
 # 5. SAVED COLLECTION
@@ -1074,40 +1071,48 @@ elif selected_page == "Model Performance":
 elif selected_page == "Academic Documentation":
     st.markdown("""
         <div style="margin-bottom: 1.5rem;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: #382534; font-weight: 700;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;">
                 Academic Project Documentation
             </h2>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            <p style="font-size: 0.95rem;">
                 System architecture, transfer learning principles, and mathematical underpinnings.
             </p>
         </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("""
-        <div class="clean-card">
-            <h3 style="color: #382534; font-size: 1.25rem;">1. Problem Definition</h3>
-            <p style="line-height: 1.6; color: var(--text-primary); font-size: 0.95rem;">
-                Fine-Grained Visual Categorization (FGVC) involves distinguishing visually similar sub-categories within a broader taxonomic domain. Flowers exhibit high intra-class variance due to developmental phenology, pigmentation fluctuations, and lighting angles, combined with subtle inter-class differences between related taxa. PetalPop AI addresses these challenges using transfer learning from MobileNetV2.
-            </p>
+    with st.container():
+        st.markdown('<div class="clean-card">', unsafe_allow_html=True)
+        
+        st.markdown("### 1. Problem Definition")
+        st.write(
+            "Fine-Grained Visual Categorization (FGVC) involves distinguishing visually similar sub-categories "
+            "within a broader taxonomic domain. Flowers exhibit high intra-class variance due to developmental phenology, "
+            "pigmentation fluctuations, and lighting angles, combined with subtle inter-class differences between related taxa. "
+            "PetalPop AI addresses these challenges using transfer learning from MobileNetV2."
+        )
 
-            <h3 style="color: #382534; font-size: 1.25rem; margin-top: 1.5rem;">2. MobileNetV2 Architecture</h3>
-            <p style="line-height: 1.6; color: var(--text-primary); font-size: 0.95rem;">
-                MobileNetV2 optimizes parameter efficiency through Inverted Residual Blocks with Linear Bottlenecks:
-            </p>
-            <ul style="line-height: 1.6; font-size: 0.95rem;">
-                <li><b>Depthwise Separable Convolutions:</b> Factorizes standard convolutions into a 3x3 depthwise spatial convolution and a 1x1 pointwise projection convolution, reducing computational overhead by approximately 8 to 9 times.</li>
-                <li><b>Inverted Residuals:</b> Connects low-dimensional bottlenecks directly with residual skip connections, expanding to higher dimensional representations within intermediate layers before projection.</li>
-                <li><b>Linear Bottlenecks:</b> Preserves manifold representations by eliminating non-linear activations in the final projection layer of each block.</li>
-            </ul>
+        st.markdown("### 2. MobileNetV2 Architecture")
+        st.write(
+            "MobileNetV2 optimizes parameter efficiency through Inverted Residual Blocks with Linear Bottlenecks:"
+        )
+        st.markdown("""
+- **Depthwise Separable Convolutions:** Factorizes standard convolutions into a 3x3 depthwise spatial convolution and a 1x1 pointwise projection convolution, reducing computational overhead by approximately 8 to 9 times.
+- **Inverted Residuals:** Connects low-dimensional bottlenecks directly with residual skip connections, expanding to higher dimensional representations within intermediate layers before projection.
+- **Linear Bottlenecks:** Preserves manifold representations by eliminating non-linear activations in the final projection layer of each block.
+        """)
 
-            <h3 style="color: #382534; font-size: 1.25rem; margin-top: 1.5rem;">3. Data Leakage Prevention</h3>
-            <p style="line-height: 1.6; color: var(--text-primary); font-size: 0.95rem;">
-                The dataset is divided into stratified train (70%), validation (15%), and test (15%) partitions. Data augmentation (random flips, rotations, zoom, and contrast jitter) is strictly confined to the training stream, preventing validation or test leakage.
-            </p>
+        st.markdown("### 3. Data Leakage Prevention")
+        st.write(
+            "The dataset is divided into stratified train (70%), validation (15%), and test (15%) partitions. "
+            "Data augmentation (random flips, rotations, zoom, and contrast jitter) is strictly confined to the training stream, "
+            "preventing validation or test leakage."
+        )
 
-            <h3 style="color: #382534; font-size: 1.25rem; margin-top: 1.5rem;">4. Explainability with Grad-CAM</h3>
-            <p style="line-height: 1.6; color: var(--text-primary); font-size: 0.95rem;">
-                Grad-CAM utilizes the spatial gradients of the predicted class score with respect to the final convolutional feature maps to generate visual attribution heatmaps, validating that the classification is rooted in authentic biological structures rather than background artifacts.
-            </p>
-        </div>
-    """, unsafe_allow_html=True)
+        st.markdown("### 4. Explainability with Grad-CAM")
+        st.write(
+            "Grad-CAM utilizes the spatial gradients of the predicted class score with respect to the final convolutional "
+            "feature maps to generate visual attribution heatmaps, validating that the classification is rooted in authentic "
+            "biological structures rather than background artifacts."
+        )
+
+        st.markdown("</div>", unsafe_allow_html=True)
