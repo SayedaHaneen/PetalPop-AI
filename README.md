@@ -5,10 +5,15 @@
 [![Keras](https://img.shields.io/badge/Keras-3.15+-D00000?style=flat-square&logo=keras&logoColor=white)](https://keras.io/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.40+-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SayedaHaneen/PetalPop-AI/blob/main/PetalPop_AI.ipynb)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-success?style=flat-square)](https://ed2bf8444cc358.app.lhr.life)
 [![Dataset](https://img.shields.io/badge/Dataset-Oxford%20102%20Flowers-green?style=flat-square)](https://www.robots.ox.ac.uk/~vgg/data/flowers/102/)
 
 **A University-Level Deep Learning and Explainable Computer Vision System**  
 *Fine-grained categorization of 102 flower species via MobileNetV2 Transfer Learning, Grad-CAM interpretability, and evidence-based botanical care recommendations.*
+
+- **Live Web Application**: [https://ed2bf8444cc358.app.lhr.life](https://ed2bf8444cc358.app.lhr.life)
+- **Interactive Google Colab Notebook (Pre-Executed)**: [Open in Colab](https://colab.research.google.com/github/SayedaHaneen/PetalPop-AI/blob/main/PetalPop_AI.ipynb)
+- **GitHub Repository**: [https://github.com/SayedaHaneen/PetalPop-AI](https://github.com/SayedaHaneen/PetalPop-AI)
 
 ---
 
