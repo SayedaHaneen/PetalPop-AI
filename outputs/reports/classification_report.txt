@@ -1,0 +1,108 @@
+                               precision    recall  f1-score   support
+
+                Pink Primrose       1.00      0.83      0.91         6
+    Hard-leaved Pocket Orchid       1.00      1.00      1.00         9
+             Canterbury Bells       0.67      1.00      0.80         6
+                    Sweet Pea       0.75      0.38      0.50         8
+             English Marigold       0.86      0.67      0.75         9
+                   Tiger Lily       0.86      1.00      0.92         6
+                  Moon Orchid       1.00      0.83      0.91         6
+             Bird of Paradise       0.93      1.00      0.96        13
+                    Monkshood       1.00      0.57      0.73         7
+                Globe Thistle       1.00      1.00      1.00         6
+                   Snapdragon       0.91      0.77      0.83        13
+                  Colt's Foot       0.87      1.00      0.93        13
+                  King Protea       1.00      0.71      0.83         7
+                Spear Thistle       1.00      1.00      1.00         7
+                  Yellow Iris       0.86      0.86      0.86         7
+                 Globe-Flower       0.86      1.00      0.92         6
+            Purple Coneflower       0.81      1.00      0.90        13
+                Peruvian Lily       0.79      0.85      0.81        13
+               Balloon Flower       0.80      0.57      0.67         7
+        Giant White Arum Lily       1.00      0.88      0.93         8
+                    Fire Lily       1.00      1.00      1.00         6
+            Pincushion Flower       0.89      0.89      0.89         9
+                   Fritillary       1.00      0.93      0.96        14
+                   Red Ginger       1.00      0.83      0.91         6
+               Grape Hyacinth       1.00      1.00      1.00         6
+                   Corn Poppy       0.75      1.00      0.86         6
+     Prince of Wales Feathers       1.00      1.00      1.00         6
+             Stemless Gentian       1.00      1.00      1.00        10
+                    Artichoke       0.80      1.00      0.89        12
+                Sweet William       0.85      0.85      0.85        13
+                    Carnation       0.75      0.75      0.75         8
+                 Garden Phlox       0.71      0.83      0.77         6
+             Love in the Mist       1.00      0.71      0.83         7
+       Mexican Aster (Cosmos)       0.83      0.83      0.83         6
+             Alpine Sea Holly       1.00      1.00      1.00         6
+         Ruby-lipped Cattleya       0.90      0.82      0.86        11
+                  Cape Flower       1.00      0.94      0.97        16
+             Great Masterwort       0.88      0.88      0.88         8
+                   Siam Tulip       0.83      0.83      0.83         6
+                  Lenten Rose       0.64      0.90      0.75        10
+     Barbeton Daisy (Gerbera)       0.94      0.84      0.89        19
+                     Daffodil       0.89      0.89      0.89         9
+       Sword Lily (Gladiolus)       0.71      0.85      0.77        20
+                   Poinsettia       0.87      0.93      0.90        14
+Bolero Deep Blue (Lisianthus)       0.86      1.00      0.92         6
+                   Wallflower       0.94      0.97      0.95        30
+                     Marigold       1.00      1.00      1.00        10
+                    Buttercup       1.00      0.91      0.95        11
+                  Oxeye Daisy       1.00      1.00      1.00         7
+             Common Dandelion       1.00      0.93      0.96        14
+                      Petunia       0.97      0.79      0.87        39
+                   Wild Pansy       1.00      0.92      0.96        13
+                      Primula       0.87      0.93      0.90        14
+                    Sunflower       1.00      1.00      1.00         9
+                  Pelargonium       0.62      0.73      0.67        11
+           Bishop of Llandaff       0.84      0.94      0.89        17
+                        Gaura       0.56      1.00      0.71        10
+              Meadow Geranium       1.00      0.94      0.97        17
+                Orange Dahlia       1.00      0.60      0.75        10
+           Pink-Yellow Dahlia       1.00      1.00      1.00        17
+             Cautleya Spicata       1.00      1.00      1.00         7
+             Japanese Anemone       0.75      0.75      0.75         8
+             Black-Eyed Susan       1.00      1.00      1.00         8
+                   Silverbush       1.00      1.00      1.00         8
+            Californian Poppy       0.89      1.00      0.94        16
+ Osteospermum (African Daisy)       1.00      1.00      1.00         9
+                Spring Crocus       0.83      0.83      0.83         6
+                 Bearded Iris       1.00      1.00      1.00         8
+                   Windflower       1.00      1.00      1.00         8
+                   Tree Poppy       0.89      0.89      0.89         9
+                      Gazania       0.90      0.75      0.82        12
+                       Azalea       0.77      0.67      0.71        15
+                   Water Lily       0.96      0.83      0.89        29
+                         Rose       1.00      0.65      0.79        26
+                  Thorn Apple       0.82      1.00      0.90        18
+                Morning Glory       1.00      0.75      0.86        16
+               Passion Flower       1.00      0.95      0.97        38
+                        Lotus       0.95      0.86      0.90        21
+                    Toad Lily       0.83      0.83      0.83         6
+                    Anthurium       1.00      0.94      0.97        16
+        Frangipani (Plumeria)       0.96      1.00      0.98        25
+                     Clematis       0.77      1.00      0.87        17
+                     Hibiscus       1.00      0.70      0.82        20
+                    Columbine       1.00      0.54      0.70        13
+                  Desert Rose       0.80      0.89      0.84         9
+                  Tree Mallow       0.50      1.00      0.67         8
+                     Magnolia       0.60      1.00      0.75         9
+                     Cyclamen       0.69      0.96      0.80        23
+                   Watercress       1.00      0.86      0.92        28
+                   Canna Lily       0.75      0.69      0.72        13
+      Hippeastrum (Amaryllis)       0.63      1.00      0.77        12
+                     Bee Balm       1.00      0.90      0.95        10
+                    Ball Moss       0.71      0.71      0.71         7
+                     Foxglove       0.89      0.96      0.92        25
+                Bougainvillea       0.94      0.89      0.92        19
+                     Camellia       0.82      0.64      0.72        14
+                       Mallow       0.80      0.80      0.80        10
+              Mexican Petunia       1.00      1.00      1.00        13
+                     Bromelia       0.73      0.89      0.80         9
+               Blanket Flower       0.78      1.00      0.88         7
+              Trumpet Creeper       1.00      1.00      1.00         8
+              Blackberry Lily       1.00      0.71      0.83         7
+
+                     accuracy                           0.88      1229
+                    macro avg       0.89      0.88      0.88      1229
+                 weighted avg       0.90      0.88      0.88      1229

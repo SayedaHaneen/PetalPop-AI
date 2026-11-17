@@ -1,0 +1,12 @@
+{
+  "test_accuracy": 0.8803905614320586,
+  "precision_macro": 0.8901098954694243,
+  "recall_macro": 0.8815588428612725,
+  "f1_macro": 0.8763389753556734,
+  "precision_weighted": 0.8988952895151645,
+  "recall_weighted": 0.8803905614320586,
+  "f1_weighted": 0.8806784710001904,
+  "total_test_samples": 1229,
+  "confusion_matrix_path": "C:\\Users\\User\\Desktop\\Flower\\outputs\\confusion_matrix.png",
+  "classification_report_path": "C:\\Users\\User\\Desktop\\Flower\\outputs\\reports\\classification_report.txt"
+}
